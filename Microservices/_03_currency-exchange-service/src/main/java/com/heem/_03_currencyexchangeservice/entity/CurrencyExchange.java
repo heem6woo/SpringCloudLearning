@@ -1,4 +1,4 @@
-package com.heem._03_currencyexchangeservice;
+package com.heem._03_currencyexchangeservice.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,14 +19,14 @@ public class CurrencyExchange {
     @Column(name= "currency_to")
     private String to;
 
-    private BigDecimal conversionMultiple;
+    private Double conversionMultiple;
 
     private String environment;
 
     public CurrencyExchange() {
 
     }
-    public CurrencyExchange(Long id, String from, String to, BigDecimal conversionMultiple) {
+    public CurrencyExchange(Long id, String from, String to, Double conversionMultiple) {
         this.id = id;
         this.from = from;
         this.to = to;
@@ -57,11 +57,11 @@ public class CurrencyExchange {
         this.to = to;
     }
 
-    public BigDecimal getConversionMultiple() {
+    public Double getConversionMultiple() {
         return conversionMultiple;
     }
 
-    public void setConversionMultiple(BigDecimal conversionMultiple) {
+    public void setConversionMultiple(Double conversionMultiple) {
         this.conversionMultiple = conversionMultiple;
     }
 

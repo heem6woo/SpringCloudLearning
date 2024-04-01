@@ -1,0 +1,8 @@
+Currency Exchange Service
+
+Currency Conversion Service
+
+
+Hibernate: drop table if exists currency_exchange cascade
+Hibernate: create table currency_exchange (conversion_multiple numeric(38,2), id bigint not null, environment varchar(255), from varchar(255), to varchar(255), primary key (id))
+2024-04-01T12:50:04.288+09:00  WARN 71893 --- [currency-exchange] [  restartedMain] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "create table currency_exchange (conversion_multiple numeric(38,2), id bigint not null, environment varchar(255), from varchar(255), to varchar(255), primary key (id))" via JDBC [Syntax error in SQL statement "create table currency_exchange (conversion_multiple numeric(38,2), id bigint not null, environment varchar(255), [*]from varchar(255), to varchar(255), primary key (id))"; expected "identifier";]
