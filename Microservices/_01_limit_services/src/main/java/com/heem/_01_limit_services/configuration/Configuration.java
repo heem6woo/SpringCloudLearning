@@ -11,6 +11,14 @@ public class Configuration {
     private int minimum;
     private int maximum;
 
+    public Configuration() {
+    }
+
+    public Configuration(int minimum, int maximum) {
+        this.minimum = minimum;
+        this.maximum = maximum;
+    }
+
     public int getMinimum() {
         return minimum;
     }
