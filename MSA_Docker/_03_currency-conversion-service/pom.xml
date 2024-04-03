@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.heem</groupId>
-    <artifactId>_03_currency-conversion-service</artifactId>
+    <artifactId>currency-conversion-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>currency-conversion-service</name>
     <description>currency-conversion-service</description>
@@ -44,45 +44,33 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
-        <!-- SB3 :  Micrometer
-            > OpenTelemetry
-            > Zipkin
-        -->
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
         <!-- Micrometer - Vendor-neutral application observability facade.
-            Instrument your JVM-based application code without vendor lock-in.
-            Observation (Metrics & Logs) + Tracing.
-        -->
+    Instrument your JVM-based application code without vendor lock-in.
+    Observation (Metrics & Logs) + Tracing.
+-->
 
         <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-observation</artifactId>
         </dependency>
 
+        <!-- OPTION 1: Open Telemetry as Bridge (RECOMMENDED) -->
         <!-- Open Telemetry
-        - Simplified Observability (metrics, logs, and traces) -->
+            - Simplified Observability (metrics, logs, and traces) -->
 
         <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-tracing-bridge-otel</artifactId>
         </dependency>
 
-        <!-- COMMON CHANGES + -->
-        <!-- Enables tracing of REST API calls made using Feign - V3 ONLY-->
-        <dependency>
-            <groupId>io.github.openfeign</groupId>
-            <artifactId>feign-micrometer</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>io.opentelemetry</groupId>
             <artifactId>opentelemetry-exporter-zipkin</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
         </dependency>
     </dependencies>
     <dependencyManagement>
@@ -102,6 +90,12 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <image>
+                        <name>heem/mmv3-${project.artifactId}:${project.version}</name>
+                    </image>
+                    <pullPolicy>IF_NOT_PRESENT</pullPolicy>
+                </configuration>
             </plugin>
         </plugins>
     </build>

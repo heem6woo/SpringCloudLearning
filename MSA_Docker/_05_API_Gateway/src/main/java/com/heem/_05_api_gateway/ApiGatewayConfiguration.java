@@ -43,7 +43,7 @@ public class ApiGatewayConfiguration {
                         .uri("lb://currency-exchange")) // currency-exchange or CURRENCY-EXCHANGE
                 .route(p -> p.path("/currency-conversion/**")
                         .uri("lb://currency-conversion")) // currency-conversion or CURRENCY-CONVERSION
-                .route(p -> p.path("/currency-exchange-feign/**")
+                .route(p -> p.path("/currency-conversion-feign/**")
                         .uri("lb://currency-conversion")) // currency-conversion or CURRENCY-CONVERSION
                 .route(p -> p.path("/currency-conversion-new/**")
                         .filters(f -> f.rewritePath(

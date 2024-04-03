@@ -14,9 +14,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.HashMap;
 
-// To integrate RestTemplate with Micrometer,
-// create RestTemplate with RestTemplateBuilder
-
+// To zipkin trace the restemplate
 @Configuration(proxyBeanMethods = false)
 class RestTemplateConfiguration {
 
@@ -68,9 +66,7 @@ public class CurrencyConversionController {
         HashMap<String, String> uriVariables = new HashMap<>();
         uriVariables.put("from", from);
         uriVariables.put("to", to);
-
         /*
-
         ResponseEntity<CurrencyConversion> responseEntity =  new RestTemplate().getForEntity(
                 "http://localhost:8000/currency-exchange/from/{from}/to/{to}",
                 CurrencyConversion.class,
@@ -79,11 +75,12 @@ public class CurrencyConversionController {
 
          */
 
-        ResponseEntity<CurrencyConversion> responseEntity =  restTemplate.getForEntity(
+        ResponseEntity<CurrencyConversion> responseEntity = restTemplate.getForEntity(
                 "http://localhost:8000/currency-exchange/from/{from}/to/{to}",
                 CurrencyConversion.class,
                 uriVariables
         );
+
         // JPA binding the json result to CurrencyConversion object??
 
         CurrencyConversion currencyConversion = responseEntity.getBody();

@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.heem</groupId>
-    <artifactId>_05_API_Gateway</artifactId>
+    <artifactId>api_gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>_05_API_Gateway</name>
     <description>_05_API_Gateway</description>
@@ -40,23 +40,20 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
-        <!-- SB3 :  Micrometer
-            > OpenTelemetry
-            > Zipkin
-        -->
 
         <!-- Micrometer - Vendor-neutral application observability facade.
-            Instrument your JVM-based application code without vendor lock-in.
-            Observation (Metrics & Logs) + Tracing.
-        -->
+    Instrument your JVM-based application code without vendor lock-in.
+    Observation (Metrics & Logs) + Tracing.
+-->
 
         <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-observation</artifactId>
         </dependency>
 
+        <!-- OPTION 1: Open Telemetry as Bridge (RECOMMENDED) -->
         <!-- Open Telemetry
-        - Simplified Observability (metrics, logs, and traces) -->
+            - Simplified Observability (metrics, logs, and traces) -->
 
         <dependency>
             <groupId>io.micrometer</groupId>
@@ -67,7 +64,6 @@
             <groupId>io.opentelemetry</groupId>
             <artifactId>opentelemetry-exporter-zipkin</artifactId>
         </dependency>
-
 
 
         <dependency>
@@ -93,6 +89,12 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <image>
+                        <name>heem/mmv3-${project.artifactId}:${project.version}</name>
+                    </image>
+                    <pullPolicy>IF_NOT_PRESENT</pullPolicy>
+                </configuration>
             </plugin>
         </plugins>
     </build>

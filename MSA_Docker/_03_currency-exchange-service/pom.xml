@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.heem</groupId>
-    <artifactId>_03_currency-exchange-service</artifactId>
+    <artifactId>currency-exchange-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>_03_currency-exchange-service</name>
     <description>_03_currency-exchange-service</description>
@@ -63,23 +63,19 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
-        <!-- SB3 :  Micrometer
-            > OpenTelemetry
-            > Zipkin
-        -->
-
         <!-- Micrometer - Vendor-neutral application observability facade.
-            Instrument your JVM-based application code without vendor lock-in.
-            Observation (Metrics & Logs) + Tracing.
-        -->
+    Instrument your JVM-based application code without vendor lock-in.
+    Observation (Metrics & Logs) + Tracing.
+-->
 
         <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-observation</artifactId>
         </dependency>
 
+        <!-- OPTION 1: Open Telemetry as Bridge (RECOMMENDED) -->
         <!-- Open Telemetry
-        - Simplified Observability (metrics, logs, and traces) -->
+            - Simplified Observability (metrics, logs, and traces) -->
 
         <dependency>
             <groupId>io.micrometer</groupId>
@@ -90,8 +86,8 @@
             <groupId>io.opentelemetry</groupId>
             <artifactId>opentelemetry-exporter-zipkin</artifactId>
         </dependency>
-
     </dependencies>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -109,8 +105,21 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <image>
+                        <name>heem/mmv3-${project.artifactId}:${project.version}</name>
+                    </image>
+                    <pullPolicy>IF_NOT_PRESENT</pullPolicy>
+                </configuration>
             </plugin>
         </plugins>
     </build>
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+        </repository>
+    </repositories>
 
 </project>

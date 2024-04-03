@@ -1,10 +1,8 @@
-package com.heem._02_springcloudconfigserver;
+package com.heem._03_currencyexchangeservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.config.server.EnableConfigServer;
 
-@EnableConfigServer
 @SpringBootApplication
 public class Application {
 
