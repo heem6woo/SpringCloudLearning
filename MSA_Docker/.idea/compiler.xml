@@ -12,6 +12,11 @@
         <module name="naming-server" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="_02_spring-cloud-config-server" target="17" />
+      <module name="_03_currency-conversion-service" target="17" />
+      <module name="_04_naming-server" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
